@@ -16,8 +16,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: keeweb/keeweb
-          ref: ${{ github.repository == 'keeweb/keeweb' && github.sha || 'develop' }}
+          repository: legovaer/keeweb
+          ref: ${{ github.repository == 'legovaer/keeweb' && github.sha || 'develop' }}
       - name: Upgrade Node.js
         uses: actions/setup-node@v2
         with:
@@ -42,7 +42,7 @@ jobs:
           echo "$VIRUS_TOTAL" > keys/virus-total.json
       - name: Check on VirusTotal
         run: grunt virustotal
-        if: ${{ github.repository == 'keeweb/keeweb' }}
+        if: ${{ github.repository == 'legovaer/keeweb' }}
 
   linux:
     runs-on: ubuntu-latest
@@ -58,8 +58,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: keeweb/keeweb
-          ref: ${{ github.repository == 'keeweb/keeweb' && github.sha || 'develop' }}
+          repository: legovaer/keeweb
+          ref: ${{ github.repository == 'legovaer/keeweb' && github.sha || 'develop' }}
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
@@ -115,8 +115,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: keeweb/keeweb
-          ref: ${{ github.repository == 'keeweb/keeweb' && github.sha || 'develop' }}
+          repository: legovaer/keeweb
+          ref: ${{ github.repository == 'legovaer/keeweb' && github.sha || 'develop' }}
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
@@ -148,7 +148,7 @@ jobs:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
           p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
       - name: Grunt
-        run: grunt --max-old-space-size=4096 desktop-darwin ${{ github.repository != 'keeweb/keeweb' && '--skip-sign' || '' }}
+        run: grunt --max-old-space-size=4096 desktop-darwin ${{ github.repository != 'legovaer/keeweb' && '--skip-sign' || '' }}
       - name: Upload x64 dmg artifact
         uses: actions/upload-artifact@v1
         with:
@@ -174,8 +174,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: keeweb/keeweb
-          ref: ${{ github.repository == 'keeweb/keeweb' && github.sha || 'develop' }}
+          repository: legovaer/keeweb
+          ref: ${{ github.repository == 'legovaer/keeweb' && github.sha || 'develop' }}
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
@@ -204,7 +204,7 @@ jobs:
           echo $Env:MS_CODESIGN_PUBLIC_KEY_CLIENT > keys/code-signing/public-key-client.pem
           echo $Env:MS_CODESIGN_PUBLIC_KEY_SERVER > keys/code-signing/public-key-server.pem
       - name: Grunt
-        run: grunt desktop-win32 ${{ github.repository != 'keeweb/keeweb' && '--skip-sign' || '' }}
+        run: grunt desktop-win32 ${{ github.repository != 'legovaer/keeweb' && '--skip-sign' || '' }}
       - name: Upload ia32 exe artifact
         uses: actions/upload-artifact@v1
         with:
@@ -258,9 +258,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: keeweb/keeweb
+          repository: legovaer/keeweb
           path: keeweb
-          ref: ${{ github.repository == 'keeweb/keeweb' && github.sha || 'develop' }}
+          ref: ${{ github.repository == 'legovaer/keeweb' && github.sha || 'develop' }}
       - name: Upgrade Node.js
         uses: actions/setup-node@v2
         with:
@@ -371,7 +371,7 @@ jobs:
         working-directory: keeweb
         run: docker build -t antelle/keeweb:latest -t antelle/keeweb:${{ steps.get_tag.outputs.tag }} package/docker
       - name: Push the Docker image to dockerhub
-        if: ${{ github.repository == 'keeweb/keeweb' }}
+        if: ${{ github.repository == 'legovaer/keeweb' }}
         run: docker push --all-tags antelle/keeweb
       - name: Extract release notes
         run: node util/extract-release-notes.js --version=${{ steps.get_tag.outputs.tag }} --output=tmp/release-body.md
@@ -413,10 +413,10 @@ jobs:
         working-directory: gh-pages
         run: python3 ../keeweb/.github/actions/scripts/git-restore-mtime.py
       - name: Sync the website
-        if: ${{ github.repository == 'keeweb/keeweb' }}
+        if: ${{ github.repository == 'legovaer/keeweb' }}
         run: gsutil -m rsync -r -d -x "^\." gh-pages gs://app.keeweb.info/
       - name: Purge CloudFlare cache
-        if: ${{ github.repository == 'keeweb/keeweb' }}
+        if: ${{ github.repository == 'legovaer/keeweb' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
