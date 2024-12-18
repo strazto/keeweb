@@ -74,7 +74,7 @@
     "lodash": "^4.17.21",
     "marked": "^2.0.3",
     "mini-css-extract-plugin": "^1.6.0",
-    "mocha": "^8.4.0",
+    "mocha": "^10.3.0",
     "morphdom": "^2.6.1",
     "node-fetch": "^2.6.1",
     "normalize.css": "8.0.1",
@@ -95,14 +95,14 @@
     "sumchecker": "^3.0.1",
     "svg2ttf": "^6.0.3",
     "svgicons2svgfont": "^9.2.0",
-    "terser-webpack-plugin": "^5.1.1",
+    "terser-webpack-plugin": "^5.3.11",
     "time-grunt": "2.0.0",
     "tweetnacl": "^1.0.3",
     "url-loader": "^4.1.1",
     "wawoff2": "^2.0.0",
     "webpack": "^5.36.2",
     "webpack-bundle-analyzer": "^4.4.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^5.2.0"
   },
   "optionalDependencies": {
     "grunt-appdmg": "github:keeweb/grunt-appdmg#874ad83",
